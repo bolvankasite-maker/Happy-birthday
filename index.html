@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>С Днём Рождения, Сёстры!</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #fff0f5 0%, #ffe4e6 50%, #fce4ec 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .header {
+            margin-bottom: 40px;
+            opacity: 0;
+            animation: fadeIn 2s ease-in-out forwards;
+        }
+
+        .title {
+            font-size: 3rem;
+            color: #d81b60;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            color: #ec407a;
+            font-style: italic;
+        }
+
+        .photos-container {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+
+        .photo-frame {
+            width: 300px;
+            height: 400px;
+            background: linear-gradient(45deg, #f8bbd0, #f48fb1);
+            border-radius: 20px;
+            padding: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            position: relative;
+            overflow: hidden;
+            transform: rotate(-3deg);
+            transition: transform 0.3s ease;
+        }
+
+        .photo-frame:nth-child(even) {
+            transform: rotate(3deg);
+        }
+
+        .photo-frame:hover {
+            transform: rotate(0deg) scale(1.05);
+        }
+
+        .photo {
+            width: 100%;
+            height: 100%;
+            background-color: #ffcdd2;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #880e4f;
+            font-size: 1.2rem;
+            overflow: hidden;
+        }
+
+        .photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .photo img:hover {
+            transform: scale(1.1);
+        }
+
+        .poems-container {
+
+            width: 350px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 20px;
+            margin: 40px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            opacity: 0;
+            animation: slideIn 1.5s ease-in-out forwards 0.5s;
+        }
+
+        .poem {
+            margin-bottom: 30px;
+            font-size: 1.2rem;
+            line-height: 1.6;
+            color: #4a148c;
+            text-align: center;
+        }
+
+           .poem-1 {
+            margin-bottom: 30px;
+            font-size: 1.2rem;
+            line-height: 1.6;
+            color: #4a148c;
+            text-align: center;
+        }
+        .poems-container-1 { position: absolute;
+            right: 10px;
+            top: 570px;
+            width: 350px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 20px;
+            margin: 40px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            opacity: 0;
+            animation: slideIn 1.5s ease-in-out forwards 0.5s;
+        }
+
+
+        .poem:last-child {
+            margin-bottom: 0;
+        }
+          .poem-1:last-child {
+            margin-bottom: 0;
+        }
+
+        .decoration {
+            position: absolute;
+            font-size: 2rem;
+            color: #f06292;
+            opacity: 0.3;
+            z-index: -1;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 1.5rem;
+            color: #ec407a;
+            opacity: 0.7;
+            animation: fall linear forwards;
+        }
+
+        .footer {
+            margin-top: 40px;
+            color: #ad1457;
+            font-size: 1.1rem;
+            opacity: 0;
+            animation: fadeIn 2s ease-in-out forwards 1s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from { 
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+        }
+
+        @keyframes fall {
+            from { 
+                transform: translateY(-100px) rotate(0deg);
+                opacity: 1;
+            }
+            to { 
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .title {
+                font-size: 2.5rem;
+            }
+            
+            .subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .photo-frame {
+                width: 250px;
+                height: 350px;
+            }
+            
+            .poems-container {
+                padding: 20px;
+            }
+            
+            .poem {
+                font-size: 1.1rem;
+            }
+            .poem-1 {
+                font-size: 1.1rem;
+            }
+             .poems-container-1 {
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .title {
+                font-size: 2rem;
+            }
+            
+            .photos-container {
+                gap: 20px;
+            }
+            
+            .photo-frame {
+                width: 200px;
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hearts" id="hearts"></div>
+    
+    <div class="container">
+        <div class="header">
+            <h1 class="title">С Днём Рождения, Дорогие Сёстры!</h1>
+            <p class="subtitle">Две звёздочки, одно сердце</p>
+        </div>
+
+        <div class="photos-container">
+            <div class="photo-frame">
+                <div class="photo">
+                    <img src="s-1-photo.png" alt="фото сестер 1">
+                </div>
+                <div class="decoration" style="top: -20px; right: -10px;">🌸</div>
+            </div>
+            
+            <div class="photo-frame">
+                <div class="photo">
+                    <img src="s-2-photo.png" alt="фото сестер 2">
+                </div>
+                <div class="decoration" style="bottom: -20px; left: -10px;">💖</div>
+            </div>
+        </div>
+
+        <div class="poems-container">
+            <div class="poem">                          
+                <p>Кариночка, тебе желаю</p>
+                <p>Здоровья, счастья и успеха!</p>
+                <p>Пускай судьба тебе подарит</p>
+                <p>Побольше поводов для смеха!</p>
+            </div>
+            
+            <div class="poem">
+                <p>Любви тебе большой и чистой.</p>
+                <p>Пусть только лучшее случится.</p>
+                <p>Пусть солнцем ярким и лучистым</p>
+                <p>Твой путь по жизни озарится!</p>
+            </div>
+        </div>
+        <div class="poems-container-1">
+          <div class="poem-1">
+                <p>Каролина, будь любима,</p>
+                <p>Пусть всегда везет тебе,</p>
+                <p>Жизнь была неповторима,</p>
+                <p>Много радостей в судьбе.</p>
+            </div>
+             <div class="poem-1">
+                <p>Дверь от бед чтоб закрывала,</p>
+                <p>И не пустить тоску в окно,</p>
+                <p>Улыбка от печали чтоб спасала,</p>
+                <p>И каждый день безумно чтоб везло.</p>
+            </div>
+            </div>
+            </div>
+        <div class="footer">
+            <p>С любовью от всей семьи! ❤️</p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Создаем падающие сердечки
+            function createHearts() {
+                const heartsContainer = document.getElementById('hearts');
+                const hearts = ['💖', '🌸', '✨', '💕', '🌺'];
+                
+                setInterval(() => {
+                    const heart = document.createElement('div');
+                    heart.classList.add('heart');
+                    heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+                    
+                    heart.style.left = Math.random() * 100 + 'vw';
+                    heart.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                    
+                    heartsContainer.appendChild(heart);
+                    
+                    // Удаляем сердечко после анимации
+                    setTimeout(() => {
+                        heart.remove();
+                    }, 5000);
+                }, 300);
+            }
+
+            // Анимация появления элементов при скролле
+            function animateOnScroll() {
+                const elements = document.querySelectorAll('.poem');
+                
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.style.opacity = '1';
+                            entry.target.style.transform = 'translateY(0)';
+                        }
+                    });
+                }, {
+                    threshold: 0.1
+                });
+                
+                elements.forEach(element => {
+                    element.style.opacity = '0';
+                    element.style.transform = 'translateY(20px)';
+                    element.style.transition = 'all 0.6s ease-in-out';
+                    observer.observe(element);
+                });
+            }
+
+            createHearts();
+            animateOnScroll();
+
+            // Интерактивность для фото
+            const photoFrames = document.querySelectorAll('.photo-frame');
+            photoFrames.forEach(frame => {
+                frame.addEventListener('click', function() {
+                    this.style.transform = 'rotate(0deg) scale(1.1)';
+                    setTimeout(() => {
+                        this.style.transform = this.classList.contains('even') ? 
+                            'rotate(3deg)' : 'rotate(-3deg)';
+                    }, 1000);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
